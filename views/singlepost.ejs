@@ -1,43 +1,86 @@
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
     <title>Single Post</title>
-  </head>
-  <body>
-    <h1>Single post page</h1>
+</head>
+
+<body>
     <%- include('./partials/navbar.ejs') %>
-    <div class="singlepost">
-      <h2><%= posts.title %></h2>
-      <div class="content">
-        <p><%= posts.body %></p>
-        <p class="like" data-like="<%= posts.id %>">likes:<%= posts.likes %></p>
-      </div>
-      <a class="delete" data-del="<%= posts.id %>">Delete</a>
-    </div>
-    <script>
-      const delreq = document.querySelector("a.delete");
-      delreq.addEventListener("click", (e) => {
-        const endpoint = `/posts/${delreq.dataset.del}`;
-        fetch(endpoint, {
-          method: "DELETE",
-        }).then((window.location.href = "/posts"));
-      });
-      const likereq = document.querySelector("p.like");
-      likereq.addEventListener("click", (e) => {
-        const end = `/posts/${likereq.dataset.like}/like`;
-        fetch(end, {
-          method: "POST",
-        }).then((res) => {
-          const likes = likereq.innerHTML.split(":");
-          likes[1] = `${+likes[1] + 1}`;
-          likereq.innerHTML = likes.join(":");
-          likereq.style.pointerEvents = "none";
-        });
-      });
-    </script>
-    <%- include('./partials/footer.ejs') %>
-  </body>
+        <div class="singlepost">
+            <h2>
+                <%= posts.title %>
+            </h2>
+            <div class="content">
+                <p>
+                    <%= posts.body %>
+                </p>
+                <p class="like" data-like="<%= posts.id %>">likes:
+                    <%= posts.likes %>
+                </p>
+            </div>
+            <a class="delete" data-del="<%= posts.id %>">Delete</a>
+        </div>
+        <script>
+            const delreq = document.querySelector("a.delete");
+            delreq.addEventListener("click", (e) => {
+                const endpoint = `/posts/${delreq.dataset.del}`;
+                fetch(endpoint, {
+                    method: "DELETE",
+                }).then((window.location.href = "/posts"));
+            });
+            const likereq = document.querySelector("p.like");
+            likereq.addEventListener("click", (e) => {
+                const end = `/posts/${likereq.dataset.like}/like`;
+                fetch(end, {
+                    method: "POST",
+                }).then((res) => {
+                    const likes = likereq.innerHTML.split(":");
+                    likes[1] = `${+likes[1] + 1}`;
+                    likereq.innerHTML = likes.join(":");
+                    likereq.style.pointerEvents = "none";
+                });
+            });
+        </script>
+        <%- include('./partials/footer.ejs') %>
+</body>
+
+<style lang="css">
+    body {
+        background-color: #0080ff;
+    }
+    
+    .singlepost {
+        text-align: center;
+        background-color: white;
+        margin-top: 5%;
+        margin-left: 30%;
+        margin-right: 30%;
+        margin-bottom: 2%;
+        box-shadow: 10px 5px 8px 5px rgba(20, 18, 18, 0.623);
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-top: 1%;
+        padding-bottom: 3%;
+    }
+    
+    h2 {
+        text-align: left;
+        padding-left: 10%;
+    }
+    
+    .content {
+        text-align: left;
+        padding-left: 10%;
+    }
+    
+    .like:hover,
+    .delete:hover {
+        cursor: pointer;
+    }
+</style>
+
 </html>

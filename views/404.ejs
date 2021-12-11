@@ -1,19 +1,36 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <title>Error 404</title>
 </head>
+
 <body>
-    <nav>
-        <a href="/">Home </a> |
-        <a href="/posts">Posts page</a> |
-        <a href="/contactus">Contact us</a>
-        </nav>
-        ….
-       <footer class="footer">
-        <p>© WAD 2021 </p>
-       </footer>
+    <%- include('./partials/navbar.ejs') %>
+        <div class="error">
+            <p>ERROR 404! This page doesn't exist!</p>
+        </div>
+        <%- include('./partials/footer.ejs') %>
 </body>
+
+<style lang="css">
+    body {
+        background-color: #0080ff;
+    }
+    
+    p {
+        text-align: center;
+        background-color: white;
+        margin-top: 10%;
+        margin-left: 30%;
+        margin-right: 30%;
+        padding: 1%;
+        font-weight: bold;
+        font-size: large;
+    }
+</style>
+
 </html>

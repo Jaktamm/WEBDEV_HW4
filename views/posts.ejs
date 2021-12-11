@@ -1,31 +1,86 @@
 <html lang="en">
+
 <head>
- <meta charset="UTF-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="stylesheet" href="/style.css">
- <title>Posts</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Posts</title>
 </head>
+
 <body>
- <h1>Posts page</h1>
- <%- include('./partials/navbar.ejs') %>
- <div class="posts list">
- <h2>All posts</h2>
- <% if (posts.length > 0) { %>
- <% posts.forEach(post => { %>
- <a class="singlepost" href="/singlepost/<%= post.id %>">
- <h3 class="title">
- <%= post.title %>
- </h3>
- <p class="body">
- <%= post.body %>
- </p>
- </a>
- <% }) %>
- <% } else { %>
- <p>You did not post anything...</p>
- <% } %>
- </div>
- <%- include('./partials/footer.ejs') %>
+    <%- include('./partials/navbar.ejs') %>
+        <div class="posts-list">
+            <h2>All posts</h2>
+            <% if (posts.length > 0) { %>
+                <% posts.forEach(post => { %>
+                    <a class="singlepost" href="/singlepost/<%= post.id %>">
+                        <h3 class="title">
+                            <%= post.title %>
+                        </h3>
+                        <p class="body">
+                            <%= post.body %>
+                        </p>
+                    </a>
+                    <% }) %>
+                        <% } else { %>
+                            <p>You did not post anything...</p>
+                            <% } %>
+        </div>
+        <%- include('./partials/footer.ejs') %>
 </body>
+
+<style lang="css">
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #0080ff;
+        text-align: center;
+    }
+    
+    .posts-list {
+        margin: 0 25%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5%;
+    }
+    
+    h2 {
+        font-size: 30px;
+    }
+    
+    .singlepost {
+        background-color: white;
+        margin-top: 5%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 2%;
+        width: 80%;
+        box-shadow: 10px 5px 8px 5px rgba(20, 18, 18, 0.623);
+    }
+    
+    .singlepost:link,
+    .singlepost:visited {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .title {
+        font-weight: bold;
+        text-align: left;
+        padding: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .body {
+        font-weight: bold;
+        text-align: left;
+        padding: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+
 </html>
